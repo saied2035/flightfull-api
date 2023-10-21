@@ -1,7 +1,7 @@
 class AuthController < ApplicationController
-  skip_before_action :authenticate_request
+  skip_before_action :authenticate_request, only: [:signup, :login]
   def logged_in?
-    if cookies[:token].present?
+    if @current_user.present?
       render json: { status: 200 }, status: :ok
     else
       render json: { status: 401 }, status: 401
@@ -12,7 +12,7 @@ class AuthController < ApplicationController
     user = User.new(user_params)
     if user.save
       token = JwtToken.encode({ user_id: user.id })
-      cookies.signed[:token] = { value: token, httponly: true }
+      cookies[:token] = { value: token, httponly: true }
       render json: { status: 200 }, status: :ok
     else
       render json: { errors: user.errors.full_messages }, status: 400
@@ -28,7 +28,7 @@ class AuthController < ApplicationController
     end
     if user&.authenticate(params[:password])
       token = JwtToken.encode({ user_id: user.id })
-      cookies.signed[:token] = { value: token, httponly: true }
+      cookies[:token] = { value: token, httponly: true }
       render json: { status: 200 }, status: :ok
     else
       render json: { error: 'Password is wrong.' }, status: :unauthorized
