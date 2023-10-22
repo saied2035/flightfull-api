@@ -6,12 +6,12 @@ class Airline < ApplicationRecord
     validates :option_to_purchase, presence: true, numericality: true
     validates :total_amount_payable, presence: true, numericality: true
     validates :facebook, presence: true, format: { 
-    with: /^https\:\/\/(www.facebook|facebook)\.com\/[^?.=*&^]+$/ 
+    with: /\Ahttps\:\/\/(www.facebook|facebook)\.com\/[^?=*&^]+\z/
     }
     validates :twitter, presence: true, format: { 
-    with: /^https\:\/\/(www.twitter|twitter)\.com\/[^?.=*&^]+$/ 
+    with: /\Ahttps\:\/\/(www.twitter|twitter)\.com\/[^?=*&^]+\z/ 
     }
     validates :linkedin, presence: true, format: { 
-    with: /^https\:\/\/(www.linkedin|linkedin)\.com\/[^?.=*&^]+$/ 
+    with: /\Ahttps\:\/\/(www.linkedin|linkedin)\.com\/[^?=*&^]+\z/ 
     }
 end
