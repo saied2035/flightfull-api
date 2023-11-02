@@ -10,9 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_16_111846) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_21_101935) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "airlines", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "name"
+    t.string "description"
+    t.string "img_src"
+    t.float "fee"
+    t.float "option_to_purchase"
+    t.float "total_amount_payable"
+    t.string "facebook"
+    t.string "twitter"
+    t.string "linkedin"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_airlines_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"

@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyString
+  img_src: MyString
+  fee: 1.5
+  option_to_purchase: 1.5
+  total_amount_payable: 1.5
+  facebook: MyString
+  twitter: MyString
+  linkedin: MyString
+
+two:
+  name: MyString
+  description: MyString
+  img_src: MyString
+  fee: 1.5
+  option_to_purchase: 1.5
+  total_amount_payable: 1.5
+  facebook: MyString
+  twitter: MyString
+  linkedin: MyString

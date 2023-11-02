@@ -1,8 +1,11 @@
 class AuthController < ApplicationController
-  skip_before_action :authenticate_request
+  skip_before_action :authenticate_request, only: [:signup, :login]
   def logged_in?
-    if cookies[:token].present?
-      render json: { status: 200 }, status: :ok
+    if @current_user.present?
+      airlines = Airline.all
+      user_airlines = @current_user.airlines
+      render json: { user_id: @current_user.id, airlines: airlines, user_airlines: user_airlines, status: 200 }, 
+      status: :ok
     else
       render json: { status: 401 }, status: 401
     end
@@ -12,8 +15,9 @@ class AuthController < ApplicationController
     user = User.new(user_params)
     if user.save
       token = JwtToken.encode({ user_id: user.id })
-      cookies.signed[:token] = { value: token, httponly: true }
-      render json: { status: 200 }, status: :ok
+      cookies[:token] = { value: token, httponly: true }
+      airlines = Airline.all
+      render json: { user_id: user.id, airlines: airlines, status: 200 }, status: :ok
     else
       render json: { errors: user.errors.full_messages }, status: 400
     end
@@ -28,8 +32,11 @@ class AuthController < ApplicationController
     end
     if user&.authenticate(params[:password])
       token = JwtToken.encode({ user_id: user.id })
-      cookies.signed[:token] = { value: token, httponly: true }
-      render json: { status: 200 }, status: :ok
+      cookies[:token] = { value: token, httponly: true }
+      airlines = Airline.all
+      user_airlines = user.airlines
+      render json: { user_id: user.id, airlines: airlines, user_airlines: user_airlines, status: 200 }, 
+      status: :ok
     else
       render json: { error: 'Password is wrong.' }, status: :unauthorized
     end
