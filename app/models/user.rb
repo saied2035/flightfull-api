@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :airlines, -> { order('created_at DESC') }
   has_secure_password
 
   validates :name, presence: true
