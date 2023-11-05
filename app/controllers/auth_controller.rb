@@ -4,7 +4,8 @@ class AuthController < ApplicationController
     if @current_user.present?
       airlines = Airline.all
       user_airlines = @current_user.airlines
-      render json: { user_id: @current_user.id, airlines:, user_airlines:, status: 200 },
+      reservations = @current_user.reservations
+      render json: { user_id: @current_user.id, airlines:, user_airlines:, reservations:, status: 200 },
              status: :ok
     else
       render json: { status: 401 }, status: 401
@@ -35,7 +36,8 @@ class AuthController < ApplicationController
       cookies[:token] = { value: token, httponly: true }
       airlines = Airline.all
       user_airlines = user.airlines
-      render json: { user_id: user.id, airlines:, user_airlines:, status: 200 },
+      reservations = user.reservations
+      render json: { user_id: user.id, airlines:, user_airlines:, reservations:, status: 200 },
              status: :ok
     else
       render json: { error: 'Password is wrong.' }, status: :unauthorized
