@@ -5,7 +5,8 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    reservation = @current_user.reservations.build(reservation_params)
+    reservation = Reservation.new(reservation_params)
+    reservation.user = @current_user
     if reservation.save
       reservations = @current_user.reservations
       render json: { reservations: }, status: :created
@@ -15,8 +16,9 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
-    @current_user.reservations.destroy(Reservation.find(params[:id]))
-    reservations = @current_user.reservations
+    reservation = Reservation.find(params[:id])
+    reservation.destroy
+    reservations = @current_user.reservations  
     render json: { reservations: }, status: :ok
   end
   
