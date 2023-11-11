@@ -18,10 +18,10 @@ class ReservationsController < ApplicationController
   def destroy
     reservation = Reservation.find(params[:id])
     reservation.destroy
-    reservations = @current_user.reservations  
+    reservations = @current_user.reservations
     render json: { reservations: }, status: :ok
   end
-  
+
   def reservation_params
     params.require(:reservation).permit(:city, :date, :expiration_date, :airline_id)
   end
