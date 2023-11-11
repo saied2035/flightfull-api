@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   delete 'auth/signout', to: "auth#signout"
 
   resources :airlines, only: [:create, :destroy]
+  resources :reservations, only: [:index, :create, :destroy]
   # Defines the root path route ("/")
   # root "articles#index"
 end

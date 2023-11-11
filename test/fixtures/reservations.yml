@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  city: MyString
+  date: 2023-11-02
+  expiration_date: 2023-11-02
+  user: one
+  airline: one
+
+two:
+  city: MyString
+  date: 2023-11-02
+  expiration_date: 2023-11-02
+  user: two
+  airline: two
