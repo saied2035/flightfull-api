@@ -5,9 +5,10 @@ class ApplicationController < ActionController::API
   rescue_from ActionController::ParameterMissing do |exception|
     render json: { error: exception.message }, status: 400
   end
-  rescue_from JWT::DecodeError do ||
+  rescue_from JWT::DecodeError do
     render json: { status: 401 }, status: 401
   end
+
   private
 
   def authenticate_request
