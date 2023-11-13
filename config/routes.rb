@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   post 'auth/signup', to: "auth#signup"
   post 'auth/login_check', to: "auth#logged_in?"
   delete 'auth/signout', to: "auth#signout"
-  get '/', to, 'ping#ping'
+  get '/', to: 'ping#ping'
   resources :airlines, only: [:create, :destroy]
   resources :reservations, only: [:index, :create, :destroy]
   # Defines the root path route ("/")
