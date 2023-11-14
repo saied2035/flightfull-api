@@ -13,7 +13,6 @@ class AuthController < ApplicationController
   end
 
   def signup
-    puts "#{params}"
     user = User.new(user_params)
     if user.save
       token = JwtToken.encode({ user_id: user.id })

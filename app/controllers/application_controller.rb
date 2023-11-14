@@ -12,7 +12,7 @@ class ApplicationController < ActionController::API
   private
 
   def authenticate_request
-    token = request.headers['Authorization'].split(' ')[1]
+    token = request.headers['Authorization'].split[1]
     user_id = JwtToken.decode(token)['user_id'].to_i
     @current_user = User.find(user_id)
   end
