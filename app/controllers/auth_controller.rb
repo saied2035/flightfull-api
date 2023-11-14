@@ -13,12 +13,12 @@ class AuthController < ApplicationController
   end
 
   def signup
+    puts "#{params}"
     user = User.new(user_params)
     if user.save
       token = JwtToken.encode({ user_id: user.id })
-      cookies[:token] = { value: token, httponly: true }
       airlines = Airline.all
-      render json: { user_id: user.id, airlines:, status: 200 }, status: :ok
+      render json: { user_id: user.id, airlines:, token:, status: 200 }, status: :ok
     else
       render json: { errors: user.errors.full_messages }, status: 400
     end
@@ -33,11 +33,10 @@ class AuthController < ApplicationController
     end
     if user&.authenticate(params[:password])
       token = JwtToken.encode({ user_id: user.id })
-      cookies[:token] = { value: token, httponly: true }
       airlines = Airline.all
       user_airlines = user.airlines
       reservations = user.reservations
-      render json: { user_id: user.id, airlines:, user_airlines:, reservations:, status: 200 },
+      render json: { user_id: user.id, airlines:, user_airlines:, reservations:, token:, status: 200 },
              status: :ok
     else
       render json: { error: 'Password is wrong.' }, status: :unauthorized
