@@ -6,7 +6,9 @@ class ReservationsController < ApplicationController
 
   def create
     reservation = Reservation.new(reservation_params)
+    airline = Airline.find(params[:reservation][:airline_id])
     reservation.user = @current_user
+    reservation.airline = airline
     if reservation.save
       reservations = @current_user.reservations
       render json: { reservations: }, status: :created
