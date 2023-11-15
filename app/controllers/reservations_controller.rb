@@ -9,6 +9,7 @@ class ReservationsController < ApplicationController
     airlines = Airline.all
     airlines.each do |airline|
       puts airline.id
+      puts airline.id == params[:reservation][:airline_id].to_i
     end
     airline = Airline.find(params[:reservation][:airline_id].to_i) 
     reservation.user = @current_user
