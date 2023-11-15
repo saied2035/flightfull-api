@@ -6,11 +6,11 @@ class ReservationsController < ApplicationController
 
   def create
     reservation = Reservation.new(reservation_params)
-    airline = Airline.find(params[:reservation][:airline_id].to_i)
     airlines = Airline.all
     airlines.each do |airline|
       puts airline.id
-    end  
+    end
+    airline = Airline.find(params[:reservation][:airline_id].to_i) 
     reservation.user = @current_user
     reservation.airline = airline
     if reservation.save
