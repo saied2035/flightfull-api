@@ -3,6 +3,10 @@ class AuthController < ApplicationController
   def logged_in?
     if @current_user.present?
       airlines = Airline.all
+      airlines.each do |airline|
+        puts airline.name
+        puts airline.id
+      end
       user_airlines = @current_user.airlines
       reservations = @current_user.reservations
       render json: { user_id: @current_user.id, airlines:, user_airlines:, reservations:, status: 200 },
