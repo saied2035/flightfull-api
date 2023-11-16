@@ -11,7 +11,7 @@ class AirlinesController < ApplicationController
   end
 
   def destroy
-    @current_user.airlines.destroy(Airline.find(params[:id]))
+    @current_user.airlines.destroy(Airline.find(params[:id].to_i))
     airlines = Airline.all
     user_airlines = @current_user.airlines
     render json: { airlines:, user_airlines: }, status: :ok

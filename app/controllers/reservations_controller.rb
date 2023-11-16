@@ -6,12 +6,6 @@ class ReservationsController < ApplicationController
 
   def create
     reservation = Reservation.new(reservation_params)
-    airlines = Airline.all
-    airlines.each do |airline|
-      puts airline.name
-      puts airline.id
-      puts airline.id == params[:reservation][:airline_id].to_i
-    end
     airline = Airline.find(params[:reservation][:airline_id].to_i) 
     reservation.user = @current_user
     reservation.airline = airline
@@ -24,7 +18,7 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
-    reservation = Reservation.find(params[:id])
+    reservation = Reservation.find(params[:id].to_i)
     reservation.destroy
     reservations = @current_user.reservations
     render json: { reservations: }, status: :ok
