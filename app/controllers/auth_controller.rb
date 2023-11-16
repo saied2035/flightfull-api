@@ -43,7 +43,7 @@ class AuthController < ApplicationController
   end
 
   def signout
-    render json: { status: 401 }, status: 401
+    render status: 200
   end
 
   private
