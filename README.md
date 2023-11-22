@@ -109,7 +109,8 @@ To run the project, execute the following command:
 
 ```sh
   rails s -p 3001
-``` (the port 3001 if you want to test against the frontend repository )
+```
+ (the port 3001 if you want to test against the frontend repository )
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
