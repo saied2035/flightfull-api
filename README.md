@@ -92,20 +92,20 @@ Clone this repository to your desired folder:
 
 Install this project with:
 
+*note: make sure the PostgreSQL server is running*
+
 ```sh
   cd fligtfull-api
   bundle install
 ```
 
-### Usage
-
-To run the project, execute the following command:
-
-*note: make sure the PostgreSQL server is running*
-
 ```sh
   rails db:create db:migrate db:seed
 ```
+
+### Usage
+
+To run the project, execute the following command:
 
 ```sh
   rails s -p 3001 (the port 3001 if you want to test against the frontend repository )
