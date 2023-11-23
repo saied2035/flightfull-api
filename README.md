@@ -23,6 +23,9 @@
 
 **Flightfull** is a travel website simulator that allows users to book flights with top airlines and add their favorite airlines. All backend operations are handled through a REST API.
 
+![flightfull](https://github.com/saied2035/flightfull-api/assets/70805060/218f57f2-56bb-4379-af04-466908cca737)
+
+
 *take a look at the frontend repository [*here*](https://github.com/saied2035/flightfull)*
 
 ## 🛠 Built With <a name="built-with"></a>
